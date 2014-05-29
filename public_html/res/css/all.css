@@ -261,6 +261,12 @@ p{
 	width:131px;
 	height:86px;
 }
+.gallery-02 ul li a:hover,
+.gallery-02 ul li.selected a{
+	border:3px solid #9cbc50;
+	width:155px;
+	height:95px;
+}
 .block{
 	overflow:hidden;
 	height:1%;
