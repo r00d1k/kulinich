@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sandbox Main<?php echo ($this->html_title == null) ? '' : ' - '.addslashes($this->html_title)?></title>
+        <?php if($this->html_keywords != null):?>
+        <meta name="keywords" content="<?php echo addslashes($this->html_keywords)?>">
+        <?php endif;?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/res/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/res/css/ui-lightness/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+       <!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">-->
+        <link href="/res/js/lib/chosen/chosen.css" rel="stylesheet">
+        <link href="/res/js/lib/fancybox/jquery.fancybox.css" rel="stylesheet">
+        <link href="/res/js/lib/tag-it/css/jquery.tagit.css" rel="stylesheet">
+        <link href="/res/css/default.css" rel="stylesheet">
+        <link href="/res/uploader/fineuploader-3.5.0.css" rel="stylesheet">
+
+        <script type="text/javascript" src="/res/js/lib/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="/res/bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/res/js/lib/jquery.json-2.4.min.js"></script>
+        <script type="text/javascript" src="/res/js/lib/jquery.cookies.2.2.0.js"></script>
+        <script type="text/javascript" src="/res/js/lib/jquery-ui-1.10.0.custom.js"></script>
+        <script type="text/javascript" src="/res/js/lib/chosen/chosen.jquery.min.js"></script>
+        <script type="text/javascript" src="/res/js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+        <script type="text/javascript" src="/res/js/lib/fancybox/jquery.fancybox.pack.js"></script>
+        <script type="text/javascript" src="/res/js/lib/tag-it/tag-it.js"></script>
+        <script type="text/javascript" src="/res/uploader/jquery.fineuploader-3.5.0.js"></script>
+
+        <?php
+            $this
+                ->headScript()
+                    ->appendFile($this->baseUrl().'/res/js/app.js');
+            echo $this->headScript() . PHP_EOL;
+            echo $this->headLink() . PHP_EOL;
+            echo $this->headStyle() . PHP_EOL;
+        ?>
+
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.navbar ul.nav > li > ul li:has(ul)').addClass('dropdown-submenu')
+                $('.navbar ul.nav li:has(ul)')
+                    .css({'position':'relative'})
+                    .children('a')
+                        .dropdown();
+                $('.fancybox-edit').fancybox({
+                    wrapCSS: 'fancybox-form',
+                    title: '',
+                    autoSize:true,
+                    padding: 0,
+                    fitToView:false,
+                    beforeShow: function(){
+                        var inner = this.inner;
+                        inner.find('form')
+                            .submit(function(){
+                                var saveUrl = $(this).attr('action');
+                                $.ajax({
+                                    type:'POST',
+                                    url: saveUrl,
+                                    data: $(this).serialize(),
+                                    dataType:'json',
+                                    beforeSend:function()
+                                    {
+                                        var loading = $('<div class="fancybox-loading-locker"></div>');
+                                        inner.append(loading);
+                                        loading.css({
+                                            position: 'absolute',
+                                            top:0,
+                                            left:0,
+                                            width:inner.width(),
+                                            height:inner.height()
+                                        });
+
+                                    },
+                                    error:function(){
+                                        inner.find('.fancybox-loading-locker').remove();
+                                    },
+                                    success:function(data)
+                                    {
+                                        if(data.html != undefined)
+                                        {
+                                            inner.html(data.html);
+                                        }
+                                        if(data.success)
+                                        {
+                                            if(data.reload)
+                                            {
+                                                location.reload();
+                                            }
+                                        }
+
+                                    }
+                                });
+                                return false;
+                            })
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <a class="brand" href="/">Sandbox Projects</a>
+                <?php if(!empty($this->authUser)):?>
+                    <ul class="nav pull-right">
+                        <li class="user-name">
+                            <!--<a class="lazy-link" href="<?php echo $this->url(
+                                array(
+                                     'module' => 'default',
+                                     'controller' => 'index',
+                                     'action' => 'user-menu'))?>">
+                                <?php echo $this->authUser->firstName . ' ' . $this->authUser->lastName?>
+                            </a>-->
+                            <a href="javascript:void(0)"><?php echo $this->authUser->firstName . ' ' . $this->authUser->lastName?></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="<?php echo $this->url(
+                                        array('module' => 'default', 'controller'=>'account', 'action' => 'index'),
+                                        null,
+                                        true
+                                    )?>"><?php echo $this->translate('auth:edit-account')?></a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $this->url(
+                                        array('module' => 'auth', 'controller'=>'logout', 'action' => 'index'),
+                                        null,
+                                        true
+                                    )?>"><?php echo $this->translate('auth:logout')?></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                <?php endif;?>
+                <?php
+                    echo $this->navigation()->menu()->setUlClass('nav pull-right core-navigation')
+                        ->renderMenu(
+                        null,
+                        array(
+                             'minDepth' => 0,
+                             'maxDepth' => 3,
+                             'onlyActiveBranch' => false,
+                             'renderParents' => false
+                        )
+                    );
+                ?>
+
+            </div>
+        </div>
+        <div class="container">
+            <?php echo $this->layout()->content;?>
+        </div>
+    </body>
+</html>

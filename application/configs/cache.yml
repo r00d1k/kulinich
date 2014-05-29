@@ -1,0 +1,61 @@
+production:
+    resources:
+        cacheManager:
+            database:
+                frontendBackendAutoload: 1
+                frontend:
+                    name: Core
+                    customFrontendNaming: 0
+                    options:
+                        lifetime: 7200
+                        automatic_serialization: 1
+                backend:
+                    name: File
+                    customBackendNaming: 0
+                    options:
+                        cache_dir: APPLICATION_PATH/../data/cache/database
+            databaseMeta:
+                frontendBackendAutoload: 1
+                frontend:
+                    name: Core
+                    customFrontendNaming: 0
+                    options:
+                        lifetime: 7200
+                        automatic_serialization: 1
+                backend:
+                    name: File
+                    customBackendNaming: 0
+                    options:
+                        cache_dir: APPLICATION_PATH/../data/cache/meta
+            acl:
+                frontendBackendAutoload: 1
+                frontend:
+                    name: Core
+                    customFrontendNaming: 0
+                    options:
+                        lifetime: 7200
+                        automatic_serialization: 1
+                backend:
+                    name: File
+                    customBackendNaming: 0
+                    options:
+                        cache_dir: APPLICATION_PATH/../data/cache/acl
+            translate:
+                frontendBackendAutoload: 1
+                frontend:
+                    name: Core
+                    customFrontendNaming: 0
+                    options:
+                        lifetime: 0
+                        automatic_serialization: 1
+                backend:
+                    name: File
+                    customBackendNaming: 0
+                    options:
+                        cache_dir: APPLICATION_PATH/../data/cache/translate
+
+development:
+    _extends: production
+
+testing:
+    _extends: production

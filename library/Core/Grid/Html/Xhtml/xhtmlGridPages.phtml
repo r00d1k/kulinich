@@ -1,0 +1,67 @@
+<?php
+if($this->pagesCount > 1):
+    $paginationStart = $this->currentPage - 5;
+    if($paginationStart < 1)
+    {
+        $paginationStart = 1;
+    }
+    $paginationEnd = $paginationStart+11;
+    if($paginationEnd > $this->pagesCount)
+    {
+        $paginationEnd = $this->pagesCount;
+    }
+
+    $param = 'page';
+    if($this->gridId != null)
+    {
+        $param .= '_' . $this->gridId;
+    }
+    ?>
+    <div class="pagination">
+        <ul>
+            <?php if($this->currentPage > 5):?>
+                <li>
+                    <a href="<?php echo $this->url(array($param => 1))?>">
+                        <?php echo $this->translate('pagination:first')?>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if($this->currentPage > 1):?>
+                <li>
+                    <a href="<?php echo $this->url(array($param => ($this->currentPage - 1)))?>">
+                        <?php echo $this->translate('pagination:previous')?>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php for($paginationStart; $paginationStart <= $paginationEnd; $paginationStart++):?>
+                <?php if($paginationStart != $this->currentPage):?>
+                    <li>
+                        <a class="core-pagination-page" href="<?php echo $this->url(array($param => $paginationStart))?>">
+                            <?php echo $paginationStart;?>
+                        </a>
+                    </li>
+                <?php else:?>
+                    <li class="active">
+                        <span class="core-pagination-current-page">
+                            <?php echo $paginationStart;?>
+                        </span>
+                    </li>
+                <?php endif;?>
+            <?php endfor;?>
+            <?php if($this->currentPage < $this->pagesCount):?>
+                <li>
+                    <a href="<?php echo $this->url(array($param => ($this->currentPage + 1)))?>">
+                        <?php echo $this->translate('pagination:next')?>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php if($this->currentPage < ($this->pagesCount - 5)):?>
+            <li>
+                <a href="<?php echo $this->url(array($param => $this->pagesCount))?>">
+                    <?php echo $this->translate('pagination:last')?>
+                </a>
+            </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+<?php endif;?>

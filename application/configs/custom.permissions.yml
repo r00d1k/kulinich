@@ -1,0 +1,7 @@
+resources:
+    -:
+        code: system::email-templates
+        action: editVars
+    -:
+        code: developer
+        action: developer

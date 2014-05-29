@@ -1,0 +1,90 @@
+<div>
+    <?php if($this->addAction != null): ?>
+        <div class="top-button-container">
+            <?php
+            /** @var Core_View_Helper_ActionHref $actionHref  */
+            echo $this->actionHref()
+                ->setUrl(array('action' => 'create'))
+                ->setClass('btn btn-success' . (($this->useAddDialog) ? ' fancybox-edit fancybox.ajax' : ''))
+                ->setLabel($this->addAction)
+                ->setTitle($this->addAction);
+            ?>
+        </div>
+    <?php endif; ?>
+    <h3><?php echo $this->translate($this->caption) ?></h3>
+    <div class="draggable-holder"></div>
+    <div class="core-tree">
+        <?php
+        echo $this->partial('/acl-permissions/_tree.phtml', 'system', array(
+            'permissions' => $this->permissions
+        ));
+        ?>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.core-tree-permission')
+        .draggable({
+        axis: 'y',
+        handle: '.icon-fullscreen',
+        revert: 'invalid',
+        helper: function(){
+            return $(this).addClass('core-drag-helper');
+        },
+        stop:function( event, ui )
+        {
+            ui.helper.removeClass('core-drag-helper')
+        }
+    });
+    $('.core-tree, .core-tree-group')
+        .droppable({
+        greedy: true,
+        activeClass: "core-tree-state-hover",
+        hoverClass: "core-tree-state-active",
+        drop: function(event, ui){
+            $(this)
+                .children('ul')
+                .children('li')
+                .last()
+                .before(ui.draggable.css({
+                'position': 'static',
+                'top': 'auto'
+            }).removeClass('core-drag-helper'));
+            var parentId = $(this).data('id');
+            $.ajax({
+                url: '<?php echo $this->url(array('action' => 'set-parent')) ?>/id/' + ui.draggable.data('id') + '/parent/' + parentId,
+                beforeSend: function()
+                {
+                    ui.draggable.find('.core-tree-icon').hide()
+                        .before($('<span class="facebook-loader"></span>'));
+                },
+                error: function(){
+                    ui.draggable.find('.core-tree-icon').show().prev()
+                        .remove();
+                    //location.reload();
+                },
+                complete: function()
+                {
+                    ui.draggable.find('.core-tree-icon').show().prev()
+                        .remove();
+                },
+                success: function(data)
+                {
+                    console.log(data);
+                }
+            });
+        }
+    });
+    $('.core-tree-group > .core-tree-headline > .core-tree-icon, .core-tree-group > .core-tree-headline > .core-tree-text')
+        .css('cursor', 'pointer')
+        .on('click', function(){
+            var subList = $(this).parents('.core-tree-group').first().children("ul");
+            if(subList.css('display') == 'none')
+            {
+                subList.slideDown(500);
+            }
+            else
+            {
+                subList.slideUp(500);
+            }
+        })
+</script>

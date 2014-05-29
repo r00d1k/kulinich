@@ -1,0 +1,116 @@
+<?php $settings = $this->filtersSet;?>
+<?php
+    $isFilterSet = false;
+    foreach($settings as $filterItem)
+    {
+        if($filterItem->getValue() != null)
+        {
+            $isFilterSet = true;
+            break;
+        }
+    }
+?>
+<?php $uniqueSign = time().'_'.rand(); ?>
+<form class="form-search form-horizontal" id="<?php echo $uniqueSign?>">
+    <?php if(!empty($settings['Grid_Filter_Search'])):?>
+        <?php
+            $search = $settings['Grid_Filter_Search'];
+            unset($settings['Grid_Filter_Search']);
+
+        ?>
+        <div class="input-append">
+            <input
+                type="text"
+                class="span5 search-query"
+                name="<?php echo $search->getName()?>"
+                placeholder="<?php echo $this->translate('grid-filter:search_placeholder')?>"
+                value="<?php echo addslashes($search->getValue());?>" />
+            <?php if(count($settings) > 0):?>
+                <button id="<?php echo $uniqueSign?>-filters-togglier" class="btn search-btn-middle" type="button"><?php echo $this->translate('grid-filter:action_show_filter')?></button>
+            <?php endif;?>
+            <?php if($isFilterSet):?>
+                <button class="btn search-btn-middle btn-warning <?php echo $uniqueSign?>-filters-clearer" type="button"><?php echo $this->translate('grid-filter:action_clear_filter')?></button>
+            <?php endif;?>
+            <button type="submit" class="btn btn-inverse"><?php echo $this->translate('grid-filter:action_search')?></button>
+        </div>
+    <?php endif;?>
+    <?php if(count($settings) > 0):?>
+        <div id="<?php echo $uniqueSign?>-filters" class="filters-adv-area">
+            <?php foreach($settings as $filterItem):?>
+            <div class="control-group">
+                <label class="control-label"><?php echo $this->translate($this->lngSection . $filterItem->getLabel())?></label>
+                <div class="controls">
+                    <select name="<?php echo $filterItem->getName()?>[condition]">
+                        <?php foreach($filterItem->getConditions() as $key => $val):?>
+                            <option value="<?php echo $key?>"<?php echo ($key == $filterItem->getCondition()) ? ' selected="selected"' : ''?>>
+                                <?php echo $this->translate('grid-filter:condition_'.$val)?>
+                            </option>
+                        <?php endforeach;?>
+                    </select>
+                    <input type="text" name="<?php echo $filterItem->getName()?>[value]" value="<?php echo addslashes($filterItem->getValue());?>">
+                </div>
+            </div>
+            <?php endforeach;?>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn"><?php echo $this->translate('grid-filter:action_search')?></button>
+                    <?php if($isFilterSet):?>
+                        <button
+                            class="btn search-btn-middle btn-link <?php echo $uniqueSign?>-filters-clearer"
+                            type="button">
+                                <?php echo $this->translate('grid-filter:action_clear_filter')?>
+                        </button>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+    <?php endif;?>
+</form>
+
+<script type="text/javascript">
+    $('.<?php echo $uniqueSign?>-filters-clearer')
+        .click(function(event){
+            event.preventDefault();
+            var filters = $(this).parents('form').first().serializeObject();
+            for(var i in filters)
+            {
+                $.cookies.del('<?php echo $this->id?>'+i);
+            }
+            location.reload();
+            return false;
+        });
+    $('#<?php echo $uniqueSign?>-filters-togglier')
+        .click(function(){
+            var area = $('#<?php echo $uniqueSign?>-filters');
+            if(area.css('display') == 'none')
+            {
+                area.slideDown(500);
+            }
+            else
+            {
+                area.slideUp(500);
+            }
+        });
+    $("#<?php echo $uniqueSign?>")
+        .submit(function(event){
+            event.preventDefault();
+            var filters = $(this).serializeObject();
+            for(var i in filters)
+            {
+                if(typeof(filters[i]) != 'string' && typeof(filters[i]) != 'number')
+                {
+                    filters[i] = $.toJSON(filters[i]);
+                }
+                if(filters[i] == '' || filters[i] == null)
+                {
+                    $.cookies.del('<?php echo $this->id?>'+i);
+                }
+                else
+                {
+                    $.cookies.set('<?php echo $this->id?>'+i, filters[i], {path: '/'});
+                }
+            }
+            location.reload();
+            return false;
+        });
+</script>

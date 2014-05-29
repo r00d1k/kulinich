@@ -1,0 +1,34 @@
+production:
+    resources:
+        multiDb:
+            defaultMetadataCache: databaseMeta
+            master:
+                adapter: PDO_MYSQL
+                isDefaultTableAdapter: 1
+                default: 1
+                host: localhost
+                username: demo_kulinich
+                password: HTeD5vQIGH!Yw(
+                dbname: demo_kulinich
+                charset: UTF8
+                profiler:
+                    class: Zend_Db_Profiler_Firebug
+                    enabled: 1
+            slave:
+                adapter: PDO_MYSQL
+                defaultMetadataCache: database
+                host: localhost
+                username: demo_kulinich
+                password: q65G0QGVxC
+                dbname: demo_kulinich
+testing:
+    _extends: production
+
+development:
+    _extends: production
+    resources:
+        multiDb:
+            defaultMetadataCache: databaseMeta
+            master:
+                username: root
+                password:

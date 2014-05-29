@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="gradient">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="coyright" value="P. Matvienko, Sandbox team dev (c)2013" />
+    <title><?php echo $this->translate('site_title')?></title>
+    <link type="text/css" rel="stylesheet" href="/res/css/all.css" />
+    <script type="text/javascript" src="/res/js/lib/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/res/js/lib/swfobject.js"></script>
+</head>
+<body class="body-02" style="background-image:url(/res/images/bg/title.jpg);">
+<div class="header">
+    <div class="header-holder">
+        <h1 class="logo"><a href="/"><?php echo $this->translate('site_title')?>а</a></h1>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrapper-holder">
+        <div class="nav">
+            <a href="/page/philosophy" class="nav-01"><span ><?php echo $this->translate('navigation-contents:philosofy')?></span></a>
+            <a href="/about" class="nav-02"><span ><?php echo $this->translate('navigation-contents:about')?></span></a>
+            <a href="/laboratory" class="nav-03"><span ><?php echo $this->translate('navigation-contents:lab')?></span></a>
+            <a href="/team" class="nav-04"><span ><?php echo $this->translate('navigation-contents:team')?></span></a>
+            <a href="/publications" class="nav-05"><span ><?php echo $this->translate('navigation-contents:publications')?></span></a>
+            <a href="/clinic" class="nav-06"><span ><?php echo $this->translate('navigation-contents:clinic-cases')?></span></a>
+            <a href="/page/contacts" class="nav-07"><span ><?php echo $this->translate('navigation-contents:contacts')?></span></a>
+        </div>
+        <div class="citation">
+          <div>
+          	<img src="/res/images/zaglushka.png" alt="" />
+              <div id="flash-holder">
+                 <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"  WIDTH="300" HEIGHT="138">
+					 <PARAM NAME=movie VALUE="/res/images/rospis_white.swf">
+					 <param name="FlashVars"
+					 value="cset=1&tnumber=8&city0=12375&city1=12495&city2=33008&city3=33177&city4=33187&city5=99884&city6=33393&city7=33345&lang=en">
+					 <PARAM NAME=quality VALUE=high>
+                     <PARAM NAME=wmode VALUE=transparent>
+					 <EMBED src="/res/images/rospis_white.swf" quality=high wmode=transparent WIDTH="300" HEIGHT="138" NAME="mtown" ALIGN="" TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
+					 </EMBED>
+               </OBJECT>
+              </div>
+              <div style="clear: both;"></div>
+          </div>
+            <script type="text/javascript">
+              $(document).ready(function(){
+                  if (!swfobject.hasFlashPlayerVersion("1"))
+                  {
+                      $('#flash-holder').html('<img src="/res/images/rospis_white.png" />');
+                  }
+              });
+            </script>
+       	</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div>
+
+    <?php if($this->addAction != null):?>
+        <div class="top-button-container">
+            <?php
+            /** @var Core_View_Helper_ActionHref $actionHref  */
+            echo $this->actionHref()
+                ->setUrl(array('action' => 'create'))
+                ->setClass('btn btn-success' . (($this->useAddDialog) ? ' fancybox-edit fancybox.ajax' : ''))
+                ->setLabel($this->addAction)
+                ->setTitle($this->addAction);
+            ?>
+        </div>
+    <?php endif;?>
+    <h3><?php echo $this->translate($this->caption)?></h3>
+    <?php echo $this->grid->renderGrid()?>
+</div>

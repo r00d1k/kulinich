@@ -1,0 +1,12 @@
+<div class="article-text">
+    <div class="back-holder"><a href="/publications" class="back">Вернуться к списку публикаций</a></div>
+    <div class="article">
+        <h3><?php echo $this->article->title?></h3>
+        <div class="article-holder">
+            <?php if($this->article->image !=''):?>
+                <img src="<?php echo $this->article->image?>" alt="<?php echo $this->article->title?>" />
+            <?php endif;?>
+            <?php echo $this->article->content?>
+        </div>
+    </div>
+</div>

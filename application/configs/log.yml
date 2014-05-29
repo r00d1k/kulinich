@@ -1,0 +1,16 @@
+production:
+    resources:
+        logManager:
+            default:
+                streamWriter:
+                    writerName: Stream
+                    writerParams:
+                        stream: APPLICATION_PATH/../data/logs/application-[LOG_POSTFIX].log
+                        mode: a
+                firebugWriter:
+                    writerName: Firebug
+testing:
+    _extends: production
+
+development:
+    _extends: production

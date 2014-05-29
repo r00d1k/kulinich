@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title><?php echo $this->translate('site_title') ?></title>
+    <link type="text/css" rel="stylesheet" href="/res/css/all.css"/>
+    <link href="/res/js/lib/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/res/js/lib/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/res/js/lib/fancybox/jquery.fancybox.pack.js"></script>
+    <?php
+    $this
+        ->headScript()
+        ->appendFile($this->baseUrl() . '/res/js/app.js');
+    echo $this->headScript() . PHP_EOL;
+    echo $this->headLink() . PHP_EOL;
+    echo $this->headStyle() . PHP_EOL;
+    ?>
+</head>
+<body class="body-01"
+      style="background-image:url(<?php echo ($this->background != '') ? $this->background : '/res/images/bg/publications.jpg' ?>);">
+<div class="header">
+    <div class="header-holder">
+        <h1 class="logo"><a href="/"><?php echo $this->translate('site_title') ?></a></h1>
+        <?php //Zend_Debug::dump($this->pageCode);?>
+        <ul id="nav">
+            <li>
+                <a href="/page/philosophy"<?php echo ($this->pageCode === 'philosophy') ? ' class="active"' : '' ?>>
+                    <?php echo $this->translate('navigation-contents:philosofy') ?>
+                </a>
+            </li>
+            <li>
+                <a href="/about"<?php echo stristr($this->pageCode,'about') ? ' class="active"' : '' ?>><?php echo $this->translate('navigation-contents:about')?></a>
+            </li>
+            <li>
+                <a href="/team"<?php echo stristr($this->pageCode,'team') ? ' class="active"' : '' ?>><?php echo $this->translate('navigation-contents:team')?></a>
+            </li>
+            <li>
+                <a href="/laboratory"<?php echo stristr($this->pageCode,'laboratory') ? ' class="active"' : '' ?>><?php echo $this->translate('navigation-contents:lab')?></a>
+            </li>
+            <li>
+                <a href="/clinic"<?php echo stristr($this->pageCode,'clinic') ? ' class="active"' : '' ?>><?php echo $this->translate('navigation-contents:clinic-cases')?></a>
+            </li>
+            <li>
+                <a href="/publications"<?php echo (stristr($this->pageCode, 'navigation-contents:publications')) ? ' class="active"' : '' ?>>
+                    <?php echo $this->translate('publications')?>
+                </a>
+            </li>
+            <li>
+                <a href="/page/contacts"<?php echo ($this->pageCode === 'contacts') ? ' class="active"' : '' ?>><?php echo $this->translate('navigation-contents:contacts')?></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="wrapper-holder">
+        <?php echo $this->layout()->content; ?>
+    </div>
+</div>
+</body>
+</html>

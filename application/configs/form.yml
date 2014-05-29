@@ -1,0 +1,90 @@
+production:
+    captcha:
+        captcha: ReCaptcha
+        pubKey: 6LfFUM4SAAAAAL2-aqpVLxNKbr9-l27osvoepHMD
+        privKey: 6LfFUM4SAAAAAFA7T1Gt_vhiRc0Z47HmAffSUraz
+    richEditor:
+        default:
+            editor: Ck
+            options:
+                assetManager:
+                    enabled: true
+                    width: 800
+                    height: 500
+                    assets:
+                        0:
+                            path: APPLICATION_PATH/../public/assets/images
+                            publicPath: http://appcore-zend.loc/assets/images
+                            title: Images
+                        1:
+                            path: APPLICATION_PATH/../public/assets/flash
+                            publicPath: http://appcore-zend.loc/assets/flash
+                            title: Flash
+                        2:
+                            path: APPLICATION_PATH/../public/assets/video
+                            publicPath: http://appcore-zend.loc/assets/video
+                            title: Videos
+                        2:
+                            path: APPLICATION_PATH/../public/assets/files
+                            publicPath: http://appcore-zend.loc/assets/files
+                            title: Files
+                toolbar:
+                    0:
+                        0: Styles
+                        1: Format
+                        2: Font
+                        3: FontSize
+                        4: PipeCombo
+        innovaBase:
+            editor: LiveEditor
+            options:
+                assetManager:
+                    enabled: true
+                    width: 900
+                    height: 500
+                    assets:
+                        0:
+                            path: APPLICATION_PATH/../public/assets
+                            publicPath: http://appcore-zend.loc/assets
+                            title: Assets
+                height: 600
+                toolbarMode: 2
+                groups:
+                    0:
+                        0: grpFont
+                        1:
+                        2:
+                            -: Bold
+                            -: Italic
+                            -: Underline
+                            -: ForeColor
+                            -: BackColor
+                            -: FontName
+                            -: FontSize
+                    1:
+                        0: grpPara
+                        1:
+                        2:
+                            -: JustifyLeft
+                            -: JustifyCenter
+                            -: JustifyRight
+                            -: JustifyFull
+                            -: Paragraph
+                            -: RemoveFormat
+                            -: Numbering
+                            -: Bullets
+                    2:
+                        0: grpEdit
+                        1:
+                        2:
+                            -: Line
+                            -: Hyperlink
+                            -: Characters
+                            -: Image
+                            -: YoutubeVideo
+                            -: XHTMLSource
+development:
+    _extends: production
+
+testing:
+    _extends: production

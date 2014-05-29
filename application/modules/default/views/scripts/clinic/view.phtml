@@ -1,0 +1,42 @@
+<div class="block">
+    <div class="block-holder">
+        <div class="block-img">
+            <a href="#" class="fancyshow" title="<?php echo $this->clinicCase->title?>">
+                <img src="" alt="" />
+            </a>
+        </div>
+        <div class="block-text">
+            <h2><?php echo $this->clinicCase->title?></h2>
+            <p></p>
+        </div>
+    </div>
+    <a href="/clinic" class="back"><?php echo $this->translate('back_to_clinic_cases')?></a>
+</div>
+<div class="gallery gallery-02">
+    <a href="javascript:void(0)" class="prev"></a>
+    <div class="list-holder">
+        <ul>
+            <?php foreach($this->photos as $photo):?>
+                <li data-image="<?php echo $photo->image?>" data-imagefull="<?php echo $photo->imageLarge?>">
+                    <img src="<?php echo $photo->imageThumb?>" alt="" />
+                    <a href="javascript:void(0)"></a>
+                    <div class="slide-description" style="display: none">
+                        <?php echo nl2br($photo->description)?>
+                    </div>
+                </li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <a href="javascript:void(0)" class="next"></a>
+</div>
+<script type="text/javascript">
+    $('.gallery').bottomSlides();
+
+    $('.gallery .list-holder ul li').click(function(){
+        $(this.parentNode).find('.selected').removeClass('selected');
+        $(this).addClass('selected');
+        $('.block .block-img a').attr('href', $(this).data('imagefull'));
+        $('.block .block-img img').attr('src', $(this).data('image'));
+        $('.block .block-text p').html($(this).find('.slide-description').html());
+    }).first().trigger('click');
+</script>

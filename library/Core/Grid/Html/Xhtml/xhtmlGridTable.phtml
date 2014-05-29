@@ -1,0 +1,115 @@
+<?php $gridId = $this->grid->getId();?>
+<?php $pagination = $this->pagination->render()?>
+<?php $filter = $this->grid->getFilter();?>
+<div class="core-grid" id="grid_<?php echo $gridId;?>">
+    <div>
+        <?php if($filter != null):?>
+            <div class="search-left">
+                <?php echo $filter->render();?>
+            </div>
+        <?php endif;?>
+        <div class="pagination-right">
+            <?php echo $pagination;?>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <table cellspacing="0" cellpadding="0" border="0" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <?php foreach($this->cells as $cell):
+                    $title = $cell->getTitle();
+                    if(!empty($title))
+                    {
+                        $title = $this->translate($this->translateSection . $title);
+                    }
+                    $label = $cell->getLabel();
+                    if(!empty($title))
+                    {
+                        $label = $this->translate($this->translateSection . $label);
+                    }
+                    ?>
+                    <?php if(!$cell->isHidden()):?>
+                        <th>
+                            <?php if(!$cell->isOrderColumn()){?>
+                                <span<?php echo !empty($title) ? ' title="'.$title.'"' : ''?>>
+                                    <?php echo $label?>
+                                </span>
+                            <?php }else{?>
+                                <?php
+                                    $url = $this->url(
+                                        array(
+                                            'order-field-' . $gridId => $cell->getOrderField(),
+                                            'order-direction-' . $gridId => ($cell->getOrderDirection() != 'asc') ? 'asc':'desc'
+                                        )
+                                    )
+                                ?>
+                                <a href="<?php echo $url?>" <?php echo !empty($title) ? ' title="'.$title.'"' : ''?>>
+                                    <?php echo $label?>
+                                </a>
+                            <?php }?>
+                        </th>
+                    <?php endif;?>
+                <?php endforeach;?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                if($this->pagination != null)
+                {
+                    $data = $this->pagination->getPageData();
+                }
+                else
+                {
+                    $data = $this->source->getAll();
+                }
+            ?>
+            <?php if(count($data) == 0):?>
+                <tr class="core-grid-no-records-area">
+                    <td colspan="<?php echo count($this->cells)?>">
+                        <div class="core-grid-no-records-message">
+                            <?php echo $this->translate($this->translateSection . 'no-records-message')?>
+                        </div>
+                    </td>
+                </tr>
+            <?php else:?>
+                <?php foreach($data as $row):?>
+                    <tr <?php echo $this->cells->getRowData($row)?>>
+                        <?php foreach($this->cells as $cell):?>
+                            <?php if(!$cell->isHidden()):?>
+
+                                    <?php echo $cell->renderCell($row)?>
+
+                            <?php endif;?>
+                        <?php endforeach;?>
+                    </tr>
+                <?php endforeach;?>
+            <?php endif;?>
+        </tbody>
+        <?php if($this->pagination != null && ($pagesCount = $this->pagination->getPagesCount()) > 1):?>
+            <tfoot>
+                <tr>
+                    <td colspan="<?php echo count($this->cells)?>">
+                        <div style="text-align: center">
+                            <span class="footer-caption"><?php echo $this->translate('pagination:page')?>: </span>
+                            <span class="footer-val"><?php echo $this->pagination->getPage()?></span>
+                            <span class="footer-caption"> <?php echo $this->translate('pagination:page_of')?> </span>
+                            <span class="footer-val"><?php echo $pagesCount?></span>;
+                            <span class="footer-spacer"> </span>
+                            <span class="footer-caption"><?php echo $this->translate('pagination:records')?>: </span>
+                            <span class="footer-val">
+                                <?php echo $recordsStart = (($this->pagination->getPage()-1) * $this->pagination->getPageSize())+1?>
+                            </span>
+                            <span class="footer-caption"><?php echo $this->translate('pagination:records_to')?>: </span>
+                            <span class="footer-val">
+                                <?php echo count($data) + $recordsStart?>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        <?php endif;?>
+    </table>
+    <div class="pagination-right">
+        <?php echo $pagination;?>
+    </div>
+</div>

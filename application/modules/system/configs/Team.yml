@@ -1,0 +1,64 @@
+grid:
+    id: team
+    headerEnabled: yes
+    type: html
+    defaultOrdering: rank ASC
+    pagination:
+        pageSize: 80
+    rowData:
+        id: id
+    columns:
+        drag:
+            type: drag
+        id:
+            label: id
+            title: id
+            type: text
+            content: {{id}}
+        name:
+            label: name
+            title: name
+            type: text
+            content: {{name}}
+        specification:
+            label: specification
+            title: specification
+            type: text
+            content: {{specification}}
+        useBigPhoto:
+            type: checkbox
+            label: use_big_photo
+            title: use_big_photo
+            content: useBigPhoto
+            valueChecked: yes
+            valueUnchecked: no
+            disabled: true
+        image:
+            label: image
+            title: image
+            type: image
+            content: image
+            style: height:50px
+        actions:
+            type: actions
+            splitter: &nbsp;&nbsp;
+            content:
+                edit:
+                    title: action_edit
+                    htmlAttributes:
+                        class: icon-edit fancybox-edit fancybox.ajax
+                    url:
+                        module: system
+                        controller: team
+                        action: edit
+                        id: {{id}}
+                delete:
+                    title: action_delete
+                    htmlAttributes:
+                        class: icon-remove-circle
+                    confirm: delete_confirmation
+                    url:
+                        module: system
+                        controller: team
+                        action: delete
+                        id: {{id}}

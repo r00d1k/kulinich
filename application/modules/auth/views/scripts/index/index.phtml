@@ -1,0 +1,17 @@
+<div id="login-form">
+    <h3><?php echo $this->translate('navigation:sign-in')?></h3>
+    <?php if(!empty($this->errors)):?>
+        <ul class="error-messages">
+            <li>
+                <?php echo implode('</li><li>', $this->errors)?>
+            </li>
+        </ul>
+    <?php endif;?>
+    <?php echo $this->form;?>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var form = document.getElementById('login-form');
+        $(form).css('margin-top', -parseInt($(form).height()/2));
+    })
+</script>

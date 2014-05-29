@@ -1,0 +1,142 @@
+production:
+    phpSettings:
+        display_startup_errors: 1
+        display_errors: 1
+        date:
+            timezone: GMT
+    includePaths:
+        library: LIB_PATH
+    pluginPaths:
+        Core_Application_Resource: Core/Application/Resource
+    bootstrap:
+        path: APPLICATION_PATH/modules/default/Bootstrap.php
+        class: Bootstrap
+    appNamespace:
+    autoloaderNamespaces:
+        - Core_
+        - Zend_
+        - ZendX_
+        - ZFDebug_
+    svn:
+        repository:
+            path: /var/svn/repository
+            repoConfig: conf/svnserve.conf
+            usersFile: conf/passwd
+    resources:
+        mailer:
+            default: sendgrid
+            presets:
+                sendgrid:
+                    type: smtp
+                    options:
+                        host: smtp.sendgrid.net
+                        connection:
+                            port: 587
+                            ssl: tls
+                            auth: login
+                            username: shturman.p
+                            password: sp2504c
+                mailjet:
+                    type: smtp
+                    options:
+                        host: in.mailjet.com
+                        connection:
+                            port: 465
+                            ssl: ssl
+                            auth: login
+                            username: shturman.p
+                            password: sp2504c
+        modules:
+        configManager:
+            log:
+                path: APPLICATION_PATH/configs/log.yml
+                cache: configLog
+                params:
+                    param: 1
+        frontController:
+            moduleDirectory: MODULE_PATH
+            moduleControllerDirectoryName: controllers
+            defaultModule: default
+            defaultAction: index
+            defaultControllerName: index
+            env: APPLICATION_ENV
+            throwerrors: 0
+            plugins:
+                auth: Core_Controller_Plugin_Auth
+                navigation: Core_Controller_Plugin_Navigation
+            pluginSettings:
+                multilanguage:
+                    table: languages
+                    languageDetection: true
+                    localeField: language_locale
+                    idField: language_id
+                    isAvailableField: language_is_avaliable
+
+            actionHelperPaths:
+                Core_Controller_Action_Helper: Core/Controller/Action/Helper
+        layout:
+            layoutPath: APPLICATION_PATH/layouts/scripts
+            layout: default
+        view:
+            encoding: UTF-8
+            charset: UTF-8
+            helperPath:
+                Core_View_Helper: Core/View/Helpers
+                ZendX_JQuery_View_Helper: ZendX/JQuery/View/Helper
+        session:
+            use_only_cookies: true
+            gc_maxlifetime: 43200
+        locale:
+            default: DEFAULT_LANGUAGE
+            force: 1
+            cache: locale
+        translate:
+            adapter: Core_Translate_Adapter_Database
+            content: DEFAULT_LANGUAGE
+            cache: translate
+            disableNotices: 0
+            log: default
+        autoloader:
+            resourceTypes:
+                configs:
+                    path: configs/
+                    namespace: Config
+        zfDebug:
+            enabled: 0
+            params:
+                plugins:
+                    Database:
+                        adapter:
+                            - master
+                            - slave
+                    Exception:
+                    File:
+                        base_path: APPLICATION_PATH/../
+                    Log:
+                    Time:
+                    Variables:
+testing:
+    _extends: production
+    phpSettings:
+        display_startup_errors: 1
+        display_errors: 1
+    resources:
+        frontController:
+            throwerrors: 1
+        zfDebug:
+            enabled: 0
+        translate:
+            log:
+
+development:
+    phpSettings:
+        display_startup_errors: 1
+        display_errors: 1
+    resources:
+        frontController:
+            throwerrors: 1
+        zfDebug:
+            enabled: 0
+        translate:
+            log:
+    _extends: production

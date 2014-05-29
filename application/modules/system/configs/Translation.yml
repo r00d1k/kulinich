@@ -1,0 +1,122 @@
+grid:
+    filter:
+        filters:
+            search:
+                type: search
+                field:
+                    -: translation_module
+                    -: translation_key
+                    -: translation_value
+            section:
+                type: text
+                field: translation_module
+                label: section
+            key:
+                type: text
+                field: translation_key
+                label: key
+
+    id: system-translations
+    headerEnabled: yes
+    type: html
+    pagination:
+        pageSize: 20
+    columns:
+        section:
+            label: section
+            title: section
+            type: text
+            content: {{section}}
+        key:
+            type: text
+            label: key
+            title: key
+            content: {{key}}
+        value:
+            type: text
+            label: value
+            title: value
+            content: {{value:|cat%50%word%dots}}
+#        languageId:
+#            type: text
+#            label: language_keys
+#            title: language_keys
+#            content: {{languages}}
+        actions:
+            type: actions
+            splitter: &nbsp;&nbsp;
+            content:
+                edit:
+                    title: action_edit
+                    htmlAttributes:
+                        class: icon-edit fancybox-edit fancybox.ajax
+                    url:
+                        module: system
+                        controller: translations
+                        action: edit
+                        section: {{section}}
+                        key: {{key}}
+                delete:
+                    title: action_delete
+                    htmlAttributes:
+                        class: icon-remove-circle
+                    confirm: delete_confirmation
+                    url:
+                        module: system
+                        controller: translations
+                        action: delete
+                        section: {{section}}
+                        key: {{key}}
+
+gridMenu:
+    id: system-translations
+    headerEnabled: yes
+    type: html
+    pagination:
+        pageSize: 20
+    columns:
+        section:
+            label: section
+            title: section
+            type: text
+            content: {{section}}
+        key:
+            type: text
+            label: key
+            title: key
+            content: {{key}}
+        value:
+            type: text
+            label: value
+            title: value
+            content: {{value:|cat%50%word%dots}}
+        languageId:
+            type: text
+            label: language_keys
+            title: language_keys
+            content: {{languages}}
+        actions:
+            type: actions
+            splitter: &nbsp;&nbsp;
+            content:
+                edit:
+                    title: action_edit
+                    htmlAttributes:
+                        class: icon-edit fancybox-edit fancybox.ajax
+                    url:
+                        module: system
+                        controller: menu-names
+                        action: edit
+                        section: {{section}}
+                        key: {{key}}
+                delete:
+                    title: action_delete
+                    htmlAttributes:
+                        class: icon-remove-circle
+                    confirm: delete_confirmation
+                    url:
+                        module: system
+                        controller: menu-names
+                        action: delete
+                        section: {{section}}
+                        key: {{key}}

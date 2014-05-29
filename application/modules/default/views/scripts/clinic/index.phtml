@@ -1,0 +1,46 @@
+<ul class="cases">
+    <?php foreach($this->cases as $case):?>
+
+        <li>
+            <a href="clinic-case/<?php echo $case->code?>">
+                <img src="<?php echo  $case->cover->image?>" alt="" style="width:271px;" />
+						<span>
+							<b><?php echo $case->title?></b>
+							<em><?php echo $this->translate('more_details')?></em>
+						</span>
+            </a>
+        </li>
+    <?php endforeach;?>
+</ul>
+<div class="ref cases_ref"><a href="javscript:void(0)"><?php echo $this->translate('view_next')?></a>
+<script type="text/javascript">
+    $('.cases_ref a').click(function(){
+        if(!$(this).hasClass('is-loading'))
+        {
+            var link = $(this).addClass('is-loading');
+            $.ajax({
+                url:'/clinic/index/offset/'+$('ul.cases li').length,
+                dataType:'html',
+                success:function(data)
+                {
+                    var lis = $(data).find('li');
+                    if(lis.length > 0)
+                    {
+                        lis.appendTo('ul.cases');
+                        link.removeClass('is-loading');
+                        if(lis.length < 6)
+                        {
+                            link.remove();
+                        }
+                    }
+                    else
+                    {
+                        link.remove();
+                    }
+                }
+            });
+        }
+
+        return false;
+    })
+</script>

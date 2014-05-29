@@ -1,0 +1,349 @@
+<div class="team">
+    <?php $partsCount = 0;?>
+    <?php foreach($this->photos as $part):?>
+        <?php $partsCount++;?>
+        <?php if(is_array($part)):?>
+            <div class="team-holder">
+                <ul>
+                    <?php
+                        shuffle($part);
+                        $index = 1;
+                    ?>
+                    <?php foreach($part as $photo):?>
+                        <?php if($photo == null):?>
+                            <li></li>
+                        <?php else:?>
+                            <li id="persona-<?php echo $photo->getKey()?>">
+                                <div class="li-holder<?php echo ($index%2 == 0 && $partsCount %3 == 0) ? ' left' : ''?>">
+                                    <a class="image-holder" href="javascript:void(0);" title="<?php echo str_replace('"', '', $photo->name)?>">
+                                        <img data-image="<?php echo $photo->image?>" data-image_thumb="<?php echo $photo->imageThumb?>" src="<?php echo $photo->imageThumb?>" style="width:149px;" />
+                                    </a>
+
+                                    <div class="drop">
+                                        <div>
+                                            <h5><?php echo $photo->name?></h5>
+                                            <h6><?php echo $photo->specification?></h6>
+                                            <p><?php echo $photo->description?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endif;?>
+                        <?php $index++;?>
+                    <?php endforeach;?>
+                </ul>
+            </div>
+        <?php else:?>
+            <div class="team-holder">
+                <ul>
+                    <li class="big-li-hoder">
+                        <div class="li-holder">
+                            <a class="image-holder" href="javascript:void(0)" style="width:310px;height:310px;">
+                                <img data-image="<?php echo $part->image?>" data-image_thumb="<?php echo $part->imageThumb?>" src="<?php echo $part->imageThumb?>" style="width:310px;" />
+                            </a>
+                            <div class="drop">
+                                <div>
+                                    <h5><?php echo $part->name?></h5>
+                                    <h6><?php echo $part->specification?></h6>
+                                    <p><?php echo $part->description?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        <?php endif;?>
+    <?php endforeach;?>
+</div>
+<script type="text/javascript">
+    $('.li-holder')
+        .mouseover(function(){
+            var image = $(this).find('a.image-holder img');
+            image.attr('src', image.data('image'));
+        })
+        .mouseout(function(){
+            var image = $(this).find('a.image-holder img');
+            image.attr('src', image.data('image_thumb'));
+            $(this).removeClass('li-holder-hover');
+        })
+        .click(function(){
+            $(this).addClass('li-holder-hover');
+        })
+</script>
+    <!--<div class="team-holder">
+        <ul>
+            <li id="persona-01">
+                <div class="li-holder li-holder-2">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-02">
+
+            </li>
+            <li id="persona-01">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-02">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="team-holder">
+        <ul>
+            <li id="persona-03">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="team-holder">
+        <ul>
+            <li id="persona-01">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+                <div class="li-holder  left">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+
+            </li>
+            <li id="persona-02">
+                <div class="li-holder left">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="team-holder">
+        <ul>
+            <li id="persona-01">
+                <div class="li-holder li-holder-2">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+            </li>
+            <li id="persona-01">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="team-holder">
+        <ul>
+            <li id="persona-01">
+                <div class="li-holder li-holder-2">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+            </li>
+            <li id="persona-01">
+                <div class="li-holder">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="team-holder">
+        <ul>
+            <li id="persona-01">
+                <div class="li-holder li-holder-2">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+                <div class="li-holder left">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li id="persona-01">
+            </li>
+            <li id="persona-01">
+                <div class="li-holder left">
+                    <a href="#"></a>
+
+                    <div class="drop">
+                        <div>
+                            <h5>Анна Ивановна Иванова</h5>
+                            <h6>Хирург</h6>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>-->

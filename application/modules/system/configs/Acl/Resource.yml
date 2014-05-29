@@ -1,0 +1,37 @@
+grid:
+    filter:
+        filters:
+            search:
+                type: search
+                field:
+                    -: code
+                    -: action
+    id: system-acl-resources
+    headerEnabled: yes
+    type: html
+    pagination:
+        pageSize: 50
+    columns:
+        id:
+            order: id
+            label: id
+            title: id
+            type: text
+            content: {{id}}
+        type:
+            label: type
+            title: type
+            type: text
+            content: {{type}}
+        code:
+            order: code
+            label: code
+            title: code
+            type: text
+            content: {{code}}
+        action:
+            order: action
+            label: action
+            title: action
+            type: text
+            content: {{action}}

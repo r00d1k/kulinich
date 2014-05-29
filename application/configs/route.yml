@@ -1,0 +1,39 @@
+production:
+    resources:
+        router:
+            routes:
+                default:
+                    type: Zend_Controller_Router_Route_Module
+                    defaults:
+                        module: default
+                        controller: index
+                        action: index
+                staticPage:
+                    type: Zend_Controller_Router_Route
+                    route: page/:page-code
+                    defaults:
+                        module: default
+                        controller: index
+                        action: static-page
+                        page-code: null
+                publication:
+                    type: Zend_Controller_Router_Route
+                    route: publication/:page-code
+                    defaults:
+                        module: default
+                        controller: publications
+                        action: view
+                        page-code: null
+                case:
+                    type: Zend_Controller_Router_Route
+                    route: clinic-case/:page-code
+                    defaults:
+                        module: default
+                        controller: clinic
+                        action: view
+                        page-code: null
+development:
+    _extends: production
+
+testing:
+    _extends: production

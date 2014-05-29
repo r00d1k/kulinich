@@ -1,0 +1,68 @@
+grid:
+    filter:
+        filters:
+            search:
+                type: search
+                field:
+                    -: firstName
+                    -: lastName
+                    -: email
+
+    id: system-users
+    headerEnabled: yes
+    type: html
+    pagination:
+        pageSize: 20
+    defaultOrdering: lastLogin DESC
+    columns:
+        id:
+            order: id
+            label: id
+            title: id
+            type: text
+            content: {{id}}
+        name:
+            label: name
+            title: name
+            type: text
+            content: <span>{{firstName}} {{lastName}}</span> <span>({{email}})</span>
+        lastLogin:
+            order: lastLogin
+            label: last_login
+            title: last_login
+            type: text
+            content: {{lastLogin:|date%dd MMMM, YYYY; HH:mm}}
+        lastActivity:
+            order: lastActivity
+            label: last_activity
+            title: last_activity
+            type: text
+            content: {{lastActivity:|date%dd MMMM, YYYY; HH:mm}}
+        lastIp:
+            label: last_ip
+            title: last_ip
+            type: text
+            content: {{lastIp}}
+        actions:
+            type: actions
+            splitter: &nbsp;&nbsp;
+            content:
+                edit:
+                    title: action_edit
+                    htmlAttributes:
+                        class: icon-edit fancybox-edit fancybox.ajax
+                    url:
+                        module: system
+                        controller: users
+                        action: edit
+                        id: {{id}}
+                delete:
+                    title: action_delete
+                    htmlAttributes:
+                        class: icon-remove-circle
+                    confirm: delete_confirmation
+                    url:
+                        module: system
+                        controller: users
+                        action: delete
+                        id: {{id}}

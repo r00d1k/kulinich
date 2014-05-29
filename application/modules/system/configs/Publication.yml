@@ -1,0 +1,48 @@
+grid:
+    id: publications
+    headerEnabled: yes
+    type: html
+    pagination:
+        pageSize: 80
+    columns:
+        id:
+            label: id
+            title: id
+            type: text
+            content: {{id}}
+        title:
+            label: title
+            title: title
+            type: text
+            content: {{title}}
+        isEnabled:
+            type: checkbox
+            label: is_enabled
+            title: is_enabled
+            content: isEnabled
+            valueChecked: yes
+            valueUnchecked: no
+            disabled: true
+        actions:
+            type: actions
+            splitter: &nbsp;&nbsp;
+            content:
+                edit:
+                    title: action_edit
+                    htmlAttributes:
+                        class: icon-edit
+                    url:
+                        module: system
+                        controller: publications
+                        action: edit
+                        id: {{id}}
+                delete:
+                    title: action_delete
+                    htmlAttributes:
+                        class: icon-remove-circle
+                    confirm: delete_confirmation
+                    url:
+                        module: system
+                        controller: publications
+                        action: delete
+                        id: {{id}}

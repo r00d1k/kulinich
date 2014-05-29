@@ -1,0 +1,48 @@
+<ul>
+    <?php foreach($this->permissions as $permission): ?>
+        <li class="core-tree-<?php echo $permission->type ?>" data-id="<?php echo $permission->id ?>">
+            <div class="core-tree-headline">
+                <span class="core-tree-icon"></span>
+                <span class="core-tree-text"><?php echo $permission->code ?></span>
+                <span class="core-tree-controls">
+                    <?php
+                    if($permission->type == 'group')
+                    {
+                        echo $this->actionHref()
+                            ->setUrl(array('action' => 'create', 'parentId' => $permission->id))
+                            ->setClass('icon-plus-sign fancybox-edit fancybox.ajax')
+                            ->setLabel('')
+                            ->setTitle('system-acl-permissions:action_add_child');
+                        echo '&nbsp;&nbsp;';
+                    }
+
+                    echo $this->actionHref()
+                        ->setUrl(array('action' => 'edit', 'id'     => $permission->id))
+                        ->setClass('icon-edit fancybox-edit fancybox.ajax')
+                        ->setLabel('')
+                        ->setTitle('system-acl-permissions:action_edit');
+                    echo '&nbsp;&nbsp;';
+                    echo $this->actionHref()
+                        ->setUrl(array('action' => 'delete', 'id'     => $permission->id))
+                        ->setClass('icon-remove-circle')
+                        ->setLabel('')
+                        ->setTitle('system-acl-permissions:action_delete')
+                        ->setConfirm('system-acl-permissions:delete_confirmation');
+                    ?>
+                    <?php if(Core_Util_User::hasAccess('system::acl-permissions', 'edit') && $permission->type != 'group'): ?>
+                        <a class="icon-move" href="javascript:void(0);" title="<?php echo $this->translate('system-acl-permissions:move') ?>"></a>
+                    <?php endif; ?>
+                </span>
+            </div>
+            <?php
+            if($permission->type == 'group')
+            {
+                echo $this->partial('/acl-permissions/_tree.phtml', 'system', array(
+                    'permissions' => $permission->children
+                ));
+            }
+            ?>
+        </li>
+    <?php endforeach; ?>
+    <li class="core-tree-placeholder"><div></div></li>
+</ul>

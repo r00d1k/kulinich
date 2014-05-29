@@ -1,0 +1,165 @@
+navigation:
+    siteContents:
+        label: navigation:site-contents
+        title: navigation:site-contents
+        uri: javascript:void(0);
+        resource: system
+        privilege: section
+        pages:
+            menuNmaes:
+                label: navigation:menu-names
+                title: navigation:menu-names
+                module: system
+                controller: menu-names
+                action: index
+                resource: system::menu-names
+                privilege: index
+            about:
+                label: navigation-contents:about
+                title: navigation-contents:about
+                module: system
+                controller: about
+                action: index
+                resource: system::about
+                privilege: index
+            lab:
+                label: navigation-contents:lab
+                title: navigation-contents:lab
+                module: system
+                controller: laboratory
+                action: index
+                resource: system::laboratory
+                privilege: index
+            team:
+                label: navigation-contents:team
+                title: navigation-contents:team
+                module: system
+                controller: team
+                action: index
+            clinicCases:
+                label: navigation-contents:clinic-cases
+                title: navigation-contents:clinic-cases
+                module: system
+                controller: clinic-cases
+                action: index
+                resource: system::clinic-cases
+                privilege: index
+                pages:
+                    clinicCases:
+                        label: navigation-contents:clinic-cases
+                        title: navigation-contents:clinic-cases
+                        module: system
+                        controller: clinic-cases
+                        action: index
+                        resource: system::clinic-cases
+                        privilege: index
+                        visible: false
+            publications:
+                label: navigation-contents:publications
+                title: navigation-contents:publications
+                module: system
+                controller: publications
+                action: index
+                resource: system::publications
+                privilege: index
+            contacts:
+                label: navigation-contents:contacts
+                title: navigation-contents:contacts
+                module: system
+                controller: static-pages
+                action: edit
+                params:
+                    id: 1
+                    return-to: L3N5c3RlbQ==
+                resource: system::static-pages
+                privilege: index
+            philosofy:
+                label: navigation-contents:philosofy
+                title: navigation-contents:philosofy
+                module: system
+                controller: static-pages
+                action: edit
+                params:
+                    id: 3
+                    return-to: L3N5c3RlbQ==
+                resource: system::static-pages
+                privilege: index
+            translations:
+                label: navigation:system-translations
+                title: navigation:system-translations
+                module: system
+                controller: translations
+                action: index
+                resource: system::translations
+                privilege: index
+    system:
+        label: navigation:system
+        title: navigation:system
+        uri: javascript:void(0)
+        class: section-system
+        resource: developer
+        privilege: developer
+        pages:
+            users:
+                label: navigation:system-users
+                title: navigation:system-users
+                module: system
+                controller: users
+                action: index
+                resource: system::users
+                privilege: index
+            languages:
+                label: navigation:system-languages
+                title: navigation:system-languages
+                module: system
+                controller: languages
+                action: index
+                resource: system::languages
+                privilege: index
+            systemEmails:
+                label: navigation:system-emails
+                title: navigation:system-emails
+                module: system
+                controller: email-templates
+                action: index
+                resource: system::email-templates
+                privilege: index
+            staticPages:
+                label: navigation:static-pages
+                title: navigation:static-pages
+                module: system
+                controller: static-pages
+                action: index
+                resource: system::static-pages
+                privilege: index
+            acl:
+                uri: javascript:void(0)
+                label: A.C.L
+                title: A.C.L
+                resource: system::acl
+                privilege: section
+                pages:
+                    groups:
+                        label: navigation:system-acl-groups
+                        title: navigation:system-acl-groups
+                        module: system
+                        controller: acl-groups
+                        action: index
+                        resource: system::acl-groups
+                        privilege: index
+                    permissions:
+                        label: navigation:system-acl-permissions
+                        title: navigation:system-acl-permissions
+                        module: system
+                        controller: acl-permissions
+                        action: index
+                        resource: system::acl-permissions
+                        privilege: index
+                    resources:
+                        label: navigation:system-acl-resources
+                        title: navigation:system-acl-resources
+                        module: system
+                        controller: acl-resources
+                        action: index
+                        resource: system::acl-resources
+                        privilege: index
