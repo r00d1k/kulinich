@@ -1,9 +1,11 @@
 <div class="block">
     <div class="block-holder">
         <div class="block-img">
-            <a href="#" class="fancyshow" title="<?php echo $this->clinicCase->title?>">
+            <?php foreach($this->photos as $key => $photo):?>
+            <a style="display:none;" class="num-<?php echo strval($key)?>" href="<?php echo $photo->imageLarge?>" class="fancyshow" title="<?php echo $this->clinicCase->title?>">
                 <img src="" alt="" />
             </a>
+            <?php endforeach;?>
         </div>
         <div class="block-text">
             <h2><?php echo $this->clinicCase->title?></h2>
@@ -16,8 +18,8 @@
     <a href="javascript:void(0)" class="prev"></a>
     <div class="list-holder">
         <ul>
-            <?php foreach($this->photos as $photo):?>
-                <li data-image="<?php echo $photo->image?>" data-imagefull="<?php echo $photo->imageLarge?>">
+            <?php foreach($this->photos as $key => $photo):?>
+                <li data-image="<?php echo $photo->image?>" data-imagefull="<?php echo $photo->imageLarge?>" data-slide="num-<?php echo strval($key)?>">
                     <img src="<?php echo $photo->imageThumb?>" alt="" />
                     <a href="javascript:void(0)"></a>
                     <div class="slide-description" style="display: none">
@@ -35,8 +37,10 @@
     $('.gallery .list-holder ul li').click(function(){
         $(this.parentNode).find('.selected').removeClass('selected');
         $(this).addClass('selected');
-        $('.block .block-img a').attr('href', $(this).data('imagefull'));
-        $('.block .block-img img').attr('src', $(this).data('image'));
+
+        $('.block .block-img a').hide();
+        var slide = $('.block .block-img a.'+$(this).data('slide'));
+        slide.find('img').attr('src', $(this).data('image'));
         $('.block .block-text p').html($(this).find('.slide-description').html());
     }).first().trigger('click');
 </script>
