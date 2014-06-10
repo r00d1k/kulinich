@@ -389,6 +389,45 @@ $('a.fancyshow').fancybox({
 });
 
 $(document).ready(function(){
+    if(null != document.getElementById('about-us'))
+    {
+        $('.gallery').bottomSlides();
+        $('.bottom-slider li').click(function(){
+            $(this.parentNode).find('.selected').removeClass('selected');
+            $(this).addClass('selected');
+            $('.promo a').hide();
+
+            var slide = $('.promo a.'+$(this).data('slide'));
+            console.log('.promo a.'+$(this).data('slide'), slide);
+            slide.find('img')
+                .attr({
+                    'src': $(this).data('image')
+                })
+                .parent()
+                .attr({
+                    'title': $(this).find('img').attr('alt')
+                }).show();
+            $('.promo .promo-text h2').html($(this).find('img').attr('alt'));
+            $('.promo .promo-text p').html($(this).find('.description-holder').html());
+            return false;
+        });
+        $('.bottom-slider > li').first().trigger('click');
+    }
+
+    if(null == document.getElementById('clinic-case'))
+    {
+        $('.gallery').bottomSlides();
+
+        $('.gallery .list-holder ul li').click(function(){
+            $(this.parentNode).find('.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            $('.block .block-img a').hide();
+            var slide = $('.block .block-img a.'+$(this).data('slide')).show();
+            $('.block .block-text p').html($(this).find('.slide-description').html());
+        }).first().trigger('click');
+    }
+
     $(".project-item .project-actions .icon-remove-circle").on("click", function(){
         var self = $(this);
         if(self.hasClass('icon-loading'))

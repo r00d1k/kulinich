@@ -1,45 +1,35 @@
-<div class="block">
-    <div class="block-holder">
-        <div class="block-img">
-            <?php foreach($this->photos as $key => $photo):?>
-            <a style="display:none;" rel="fancybox-thumb" class="num-<?php echo strval($key)?> fancyshow" href="<?php echo $photo->imageLarge?>" title="<?php echo $this->clinicCase->title?>">
-                <img src="<?php echo $photo->image?>" alt="" />
-            </a>
-            <?php endforeach;?>
+<div id="clinic-case">
+    <div class="block">
+        <div class="block-holder">
+            <div class="block-img">
+                <?php foreach($this->photos as $key => $photo):?>
+                <a style="display:none;" rel="fancybox-thumb" class="num-<?php echo strval($key)?> fancyshow" href="<?php echo $photo->imageLarge?>" title="<?php echo $this->clinicCase->title?>">
+                    <img src="<?php echo $photo->image?>" alt="" />
+                </a>
+                <?php endforeach;?>
+            </div>
+            <div class="block-text">
+                <h2><?php echo $this->clinicCase->title?></h2>
+                <p></p>
+            </div>
         </div>
-        <div class="block-text">
-            <h2><?php echo $this->clinicCase->title?></h2>
-            <p></p>
+        <a href="/clinic" class="back"><?php echo $this->translate('back_to_clinic_cases')?></a>
+    </div>
+    <div class="gallery gallery-02">
+        <a href="javascript:void(0)" class="prev"></a>
+        <div class="list-holder">
+            <ul>
+                <?php foreach($this->photos as $key => $photo):?>
+                    <li data-slide="num-<?php echo strval($key)?>">
+                        <img src="<?php echo $photo->imageThumb?>" alt="" />
+                        <a href="javascript:void(0)"></a>
+                        <div class="slide-description" style="display: none">
+                            <?php echo nl2br($photo->description)?>
+                        </div>
+                    </li>
+                <?php endforeach;?>
+            </ul>
         </div>
+        <a href="javascript:void(0)" class="next"></a>
     </div>
-    <a href="/clinic" class="back"><?php echo $this->translate('back_to_clinic_cases')?></a>
 </div>
-<div class="gallery gallery-02">
-    <a href="javascript:void(0)" class="prev"></a>
-    <div class="list-holder">
-        <ul>
-            <?php foreach($this->photos as $key => $photo):?>
-                <li data-slide="num-<?php echo strval($key)?>">
-                    <img src="<?php echo $photo->imageThumb?>" alt="" />
-                    <a href="javascript:void(0)"></a>
-                    <div class="slide-description" style="display: none">
-                        <?php echo nl2br($photo->description)?>
-                    </div>
-                </li>
-            <?php endforeach;?>
-        </ul>
-    </div>
-    <a href="javascript:void(0)" class="next"></a>
-</div>
-<script type="text/javascript">
-    $('.gallery').bottomSlides();
-
-    $('.gallery .list-holder ul li').click(function(){
-        $(this.parentNode).find('.selected').removeClass('selected');
-        $(this).addClass('selected');
-
-        $('.block .block-img a').hide();
-        var slide = $('.block .block-img a.'+$(this).data('slide')).show();
-        $('.block .block-text p').html($(this).find('.slide-description').html());
-    }).first().trigger('click');
-</script>

@@ -1,55 +1,89 @@
-<div class="promo">
-    <div class="promo-img">
-        <a href="#" class="fancyshow">
-            <img src="" alt="" />
-        </a>
-    </div>
-    <div class="promo-text">
-        <h2></h2>
-        <p>
+<div id="about-us">
+    <div class="promo">
+        <div class="promo-img">
+            <?php foreach($this->photos as $key => $photo): ?>
+                <a rel="fancybox-thumb" style="display:none;" href="<?php echo $photo->imageLarge?>" class="fancyshow num-<?php echo strval($key)?>">
+                    <img src="" alt="<?php echo addslashes($photo->title)?>" title="<?php echo addslashes($photo->title)?>" />
+                </a>
+            <?php endforeach ?>
+        </div>
+        <div class="promo-text about_text">
+            <h2></h2>
+            <p>
 
-        </p>
+            </p>
+        </div>
+    </div>
+    <div class="gallery">
+        <a href="javascript:void(0)" class="prev"></a>
+        <div class="list-holder" style="width:860px;">
+            <ul class="bottom-slider">
+                <?php foreach($this->photos as $key => $photo): ?>
+                    <li data-image="<?php echo $photo->image?>" data-slide="num-<?php echo strval($key)?>">
+                        <img src="<?php echo $photo->imageThumb?>" alt="<?php echo addslashes($photo->title)?>" />
+                        <a href="javascript:viod(0)"></a>
+                        <div style="display:none;" class="description-holder">
+                            <?php echo nl2br($photo->description) ?>
+                        </div>
+                    </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <a href="avascript:void(0)" class="next"></a>
     </div>
 </div>
-<div class="gallery">
-    <a href="javascript:void(0)" class="prev"></a>
-    <div class="list-holder" style="width:860px;">
-        <ul class="bottom-slider">
-            <?php
-            $index = 0;
-            foreach($this->photos as $photo):
-                $index++;
-                ?>
-                <li data-image="<?php echo $photo->image?>" data-fullimage="<?php echo $photo->imageLarge?>">
-                    <img src="<?php echo $photo->imageThumb?>" alt="<?php echo addslashes($photo->title)?>" />
-                    <a href="javascript:viod(0)"></a>
-                    <div style="display:none;" class="description-holder">
-                        <?php echo nl2br($photo->description) ?>
-                    </div>
-                </li>
-            <?php endforeach;?>
-        </ul>
-    </div>
-    <a href="avascript:void(0)" class="next"></a>
-</div>
-<script type="text/javascript">
-    $('.gallery').bottomSlides();
-    $('.bottom-slider li').click(function(){
-        $(this.parentNode).find('.selected').removeClass('selected');
-        $(this).addClass('selected');
-        $('.promo img')
-            .attr({
-                'src': $(this).data('image'),
-                'alt': $(this).find('img').attr('alt')
-            })
-            .parent()
-            .attr({
-                'href': $(this).data('fullimage'),
-                'title': $(this).find('img').attr('alt')
-            })
-        $('.promo .promo-text h2').html($(this).find('img').attr('alt'));
-        $('.promo .promo-text p').html($(this).find('.description-holder').html());
-        return false;
-    });
-    $('.bottom-slider > li').first().trigger('click');
-</script>
+<!--<div class="promo">-->
+<!--    <div class="promo-img">-->
+<!--        <a href="#" class="fancyshow">-->
+<!--            <img src="" alt="" />-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="promo-text">-->
+<!--        <h2></h2>-->
+<!--        <p>-->
+<!---->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="gallery">-->
+<!--    <a href="javascript:void(0)" class="prev"></a>-->
+<!--    <div class="list-holder" style="width:860px;">-->
+<!--        <ul class="bottom-slider">-->
+<!--            --><?php
+//            $index = 0;
+//            foreach($this->photos as $photo):
+//                $index++;
+//                ?>
+<!--                <li data-image="--><?php //echo $photo->image?><!--" data-fullimage="--><?php //echo $photo->imageLarge?><!--">-->
+<!--                    <img src="--><?php //echo $photo->imageThumb?><!--" alt="--><?php //echo addslashes($photo->title)?><!--" />-->
+<!--                    <a href="javascript:viod(0)"></a>-->
+<!--                    <div style="display:none;" class="description-holder">-->
+<!--                        --><?php //echo nl2br($photo->description) ?>
+<!--                    </div>-->
+<!--                </li>-->
+<!--            --><?php //endforeach;?>
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <a href="avascript:void(0)" class="next"></a>-->
+<!--</div>-->
+<!--<script type="text/javascript">-->
+<!--    $('.gallery').bottomSlides();-->
+<!--    $('.bottom-slider li').click(function(){-->
+<!--        $(this.parentNode).find('.selected').removeClass('selected');-->
+<!--        $(this).addClass('selected');-->
+<!--        $('.promo img')-->
+<!--            .attr({-->
+<!--                'src': $(this).data('image'),-->
+<!--                'alt': $(this).find('img').attr('alt')-->
+<!--            })-->
+<!--            .parent()-->
+<!--            .attr({-->
+<!--                'href': $(this).data('fullimage'),-->
+<!--                'title': $(this).find('img').attr('alt')-->
+<!--            })-->
+<!--        $('.promo .promo-text h2').html($(this).find('img').attr('alt'));-->
+<!--        $('.promo .promo-text p').html($(this).find('.description-holder').html());-->
+<!--        return false;-->
+<!--    });-->
+<!--    $('.bottom-slider > li').first().trigger('click');-->
+<!--</script>-->
