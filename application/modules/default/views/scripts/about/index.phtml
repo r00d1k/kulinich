@@ -1,8 +1,10 @@
 <div class="promo">
     <div class="promo-img">
-        <a href="#" class="fancyshow">
-            <img src="" alt="" />
+        <?php foreach($this->photos as $key => $photo): ?>
+        <a style="display:none;" href="<?php echo $photo->imageLarge?>" class="fancyshow num-<?php echo strval($key)?>">
+            <img src="" alt="<?php echo addslashes($photo->title)?>" title="<?php echo addslashes($photo->title)?>" />
         </a>
+        <?php endforeach ?>
     </div>
     <div class="promo-text about_text">
         <h2></h2>
@@ -15,12 +17,8 @@
     <a href="javascript:void(0)" class="prev"></a>
     <div class="list-holder" style="width:860px;">
         <ul class="bottom-slider">
-            <?php
-            $index = 0;
-            foreach($this->photos as $photo):
-                $index++;
-                ?>
-                <li data-image="<?php echo $photo->image?>" data-fullimage="<?php echo $photo->imageLarge?>">
+            <?php foreach($this->photos as $key => $photo): ?>
+                <li data-image="<?php echo $photo->image?>" data-silde="num-<?php echo strval($key)?>">
                     <img src="<?php echo $photo->imageThumb?>" alt="<?php echo addslashes($photo->title)?>" />
                     <a href="javascript:viod(0)"></a>
                     <div style="display:none;" class="description-holder">
@@ -37,7 +35,11 @@
     $('.bottom-slider li').click(function(){
         $(this.parentNode).find('.selected').removeClass('selected');
         $(this).addClass('selected');
-        $('.promo img')
+        $('.promo a').hide();
+        var slide = $('.promo a.num-'+$(this).data('slide'));
+
+
+        slide.find('img')
             .attr({
                 'src': $(this).data('image'),
                 'alt': $(this).find('img').attr('alt')
@@ -46,7 +48,7 @@
             .attr({
                 'href': $(this).data('fullimage'),
                 'title': $(this).find('img').attr('alt')
-            })
+            }).show();
         $('.promo .promo-text h2').html($(this).find('img').attr('alt'));
         $('.promo .promo-text p').html($(this).find('.description-holder').html());
         return false;
