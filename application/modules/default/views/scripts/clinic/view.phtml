@@ -41,6 +41,7 @@
         $('.block .block-img a').hide();
         var slide = $('.block .block-img a.'+$(this).data('slide'));
         slide.find('img').attr('src', $(this).data('image'));
+        slide.show();
         $('.block .block-text p').html($(this).find('.slide-description').html());
     }).first().trigger('click');
 </script>
