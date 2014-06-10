@@ -1,7 +1,7 @@
 <div class="promo">
     <div class="promo-img">
         <?php foreach($this->photos as $key => $photo): ?>
-        <a style="display:none;" href="<?php echo $photo->imageLarge?>" class="fancyshow num-<?php echo strval($key)?>">
+        <a rel="fancybox-thumb" style="display:none;" href="<?php echo $photo->imageLarge?>" class="fancyshow num-<?php echo strval($key)?>">
             <img src="" alt="<?php echo addslashes($photo->title)?>" title="<?php echo addslashes($photo->title)?>" />
         </a>
         <?php endforeach ?>
