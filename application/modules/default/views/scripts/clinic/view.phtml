@@ -3,7 +3,7 @@
         <div class="block-img">
             <?php foreach($this->photos as $key => $photo):?>
             <a style="display:none;" class="num-<?php echo strval($key)?>" href="<?php echo $photo->imageLarge?>" class="fancyshow" title="<?php echo $this->clinicCase->title?>">
-                <img src="" alt="" />
+                <img src="<?php echo $photo->image?>" alt="" />
             </a>
             <?php endforeach;?>
         </div>
@@ -19,7 +19,7 @@
     <div class="list-holder">
         <ul>
             <?php foreach($this->photos as $key => $photo):?>
-                <li data-image="<?php echo $photo->image?>" data-imagefull="<?php echo $photo->imageLarge?>" data-slide="num-<?php echo strval($key)?>">
+                <li data-slide="num-<?php echo strval($key)?>">
                     <img src="<?php echo $photo->imageThumb?>" alt="" />
                     <a href="javascript:void(0)"></a>
                     <div class="slide-description" style="display: none">
@@ -39,9 +39,7 @@
         $(this).addClass('selected');
 
         $('.block .block-img a').hide();
-        var slide = $('.block .block-img a.'+$(this).data('slide'));
-        slide.find('img').attr('src', $(this).data('image'));
-        slide.show();
+        var slide = $('.block .block-img a.'+$(this).data('slide')).show();
         $('.block .block-text p').html($(this).find('.slide-description').html());
     }).first().trigger('click');
 </script>
