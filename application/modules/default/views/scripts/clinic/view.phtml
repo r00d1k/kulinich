@@ -2,7 +2,7 @@
     <div class="block-holder">
         <div class="block-img">
             <?php foreach($this->photos as $key => $photo):?>
-            <a style="display:none;" class="num-<?php echo strval($key)?> fancyshow" href="<?php echo $photo->imageLarge?>" title="<?php echo $this->clinicCase->title?>">
+            <a style="display:none;" rel="gallery1" class="num-<?php echo strval($key)?> fancyshow" href="<?php echo $photo->imageLarge?>" title="<?php echo $this->clinicCase->title?>">
                 <img src="<?php echo $photo->image?>" alt="" />
             </a>
             <?php endforeach;?>
