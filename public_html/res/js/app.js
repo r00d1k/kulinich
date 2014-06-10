@@ -393,9 +393,13 @@ $('a.fancybox-thumb').fancybox({
     closeEffect	: 'none',
 
     helpers : {
-        thumbs	: {
-            width	: 75,
-            height	: 75
+        title : {
+            type : 'inside'
+        },
+        buttons : {},
+        thumbs : {
+            width : 50,
+            height : 50
         }
     }
 });
