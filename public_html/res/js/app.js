@@ -388,22 +388,6 @@ $('a.fancyshow').fancybox({
     }
 });
 
-$('a.fancybox-thumb').fancybox({
-    openEffect	: 'none',
-    closeEffect	: 'none',
-
-    helpers : {
-        title : {
-            type : 'inside'
-        },
-        buttons : {},
-        thumbs : {
-            width : 50,
-            height : 50
-        }
-    }
-});
-
 $(document).ready(function(){
     $(".project-item .project-actions .icon-remove-circle").on("click", function(){
         var self = $(this);
