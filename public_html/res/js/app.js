@@ -384,6 +384,10 @@ $('a.fancyshow').fancybox({
     helpers : {
         title : {
             type : 'inside'
+        },
+        thumbs	: {
+            width	: 50,
+            height	: 50
         }
     }
 });
