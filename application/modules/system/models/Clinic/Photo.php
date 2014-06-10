@@ -40,9 +40,9 @@ class System_Model_Clinic_Photo extends Core_Entity_Model_Abstract
 
                 if(!empty($this->_dataOriginal['image']) && is_file(PUBLIC_PATH . $this->_dataOriginal['image']))
                 {
-                    unlink(PUBLIC_PATH . $this->_dataOriginal['image']);
-                    unlink(PUBLIC_PATH . str_replace('clinic/','clinic/thumb/',$this->_dataOriginal['image']));
-                    unlink(PUBLIC_PATH . str_replace('clinic/','clinic/large/',$this->_dataOriginal['image']));
+                    @unlink(PUBLIC_PATH . $this->_dataOriginal['image']);
+                    @unlink(PUBLIC_PATH . str_replace('clinic/','clinic/thumb/',$this->_dataOriginal['image']));
+                    @unlink(PUBLIC_PATH . str_replace('clinic/','clinic/large/',$this->_dataOriginal['image']));
                 }
                 $this->image = '/assets/clinic/'.$newName;
             }
@@ -67,9 +67,9 @@ class System_Model_Clinic_Photo extends Core_Entity_Model_Abstract
     {
         if($this->image != null && is_file(PUBLIC_PATH . $this->image))
         {
-            unlink(PUBLIC_PATH . $this->image);
-            unlink(PUBLIC_PATH . str_replace('clinic/','clinic/thumb/',$this->image));
-            unlink(PUBLIC_PATH . str_replace('clinic/','clinic/large/',$this->image));
+            @unlink(PUBLIC_PATH . $this->image);
+            @unlink(PUBLIC_PATH . str_replace('clinic/','clinic/thumb/',$this->image));
+            @unlink(PUBLIC_PATH . str_replace('clinic/','clinic/large/',$this->image));
         }
         return parent::delete();
     }
