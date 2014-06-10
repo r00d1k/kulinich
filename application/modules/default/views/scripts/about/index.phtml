@@ -38,15 +38,13 @@
         $('.promo a').hide();
         var slide = $('.promo a.num-'+$(this).data('slide'));
 
-
+console.log(slide);
         slide.find('img')
             .attr({
-                'src': $(this).data('image'),
-                'alt': $(this).find('img').attr('alt')
+                'src': $(this).data('image')
             })
             .parent()
             .attr({
-                'href': $(this).data('fullimage'),
                 'title': $(this).find('img').attr('alt')
             }).show();
         $('.promo .promo-text h2').html($(this).find('img').attr('alt'));
