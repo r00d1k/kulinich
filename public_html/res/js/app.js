@@ -384,10 +384,21 @@ $('a.fancyshow').fancybox({
     helpers : {
         title : {
             type : 'inside'
+        }
+    }
+});
+
+$('a.fancybox-thumb').fancybox({
+    openEffect	: 'elastic',
+    closeEffect	: 'elastic',
+
+    helpers : {
+        title : {
+            type : 'inside'
         },
         thumbs	: {
-            width	: 50,
-            height	: 50
+            width	: 75,
+            height	: 75
         }
     }
 });
