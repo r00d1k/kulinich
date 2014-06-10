@@ -18,7 +18,7 @@
     <div class="list-holder" style="width:860px;">
         <ul class="bottom-slider">
             <?php foreach($this->photos as $key => $photo): ?>
-                <li data-image="<?php echo $photo->image?>" data-silde="num-<?php echo strval($key)?>">
+                <li data-image="<?php echo $photo->image?>" data-slide="num-<?php echo strval($key)?>">
                     <img src="<?php echo $photo->imageThumb?>" alt="<?php echo addslashes($photo->title)?>" />
                     <a href="javascript:viod(0)"></a>
                     <div style="display:none;" class="description-holder">
