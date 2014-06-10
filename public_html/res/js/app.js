@@ -389,13 +389,10 @@ $('a.fancyshow').fancybox({
 });
 
 $('a.fancybox-thumb').fancybox({
-    openEffect	: 'elastic',
-    closeEffect	: 'elastic',
+    openEffect	: 'none',
+    closeEffect	: 'none',
 
     helpers : {
-        title : {
-            type : 'inside'
-        },
         thumbs	: {
             width	: 75,
             height	: 75
