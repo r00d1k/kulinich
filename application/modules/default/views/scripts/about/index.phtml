@@ -36,8 +36,9 @@
         $(this.parentNode).find('.selected').removeClass('selected');
         $(this).addClass('selected');
         $('.promo a').hide();
-        var slide = $('.promo a.'+$(this).data('slide'));
 
+        var slide = $('.promo a.'+$(this).data('slide'));
+        console.log('.promo a.'+$(this).data('slide'), slide);
         slide.find('img')
             .attr({
                 'src': $(this).data('image')
