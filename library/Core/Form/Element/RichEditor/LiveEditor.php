@@ -7,7 +7,7 @@ class Core_Form_Element_RichEditor_LiveEditor extends Core_Form_Element_RichEdit
         $this->getView()->headScript()
             ->appendFile($this->getView()->baseUrl().'/res/innova/scripts/innovaeditor.js');
     }
-    public function render(Zend_View $view = null)
+    public function render(Zend_View_Interface $view = null)
     {
         $content = parent::render();
         $editorName = str_replace('-', '', $this->getId());

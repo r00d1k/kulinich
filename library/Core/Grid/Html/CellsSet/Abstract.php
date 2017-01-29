@@ -152,7 +152,8 @@ abstract class Core_Grid_Html_CellsSet_Abstract
             $value = '';
             if($values instanceof Core_Entity_Model_Abstract)
             {
-                $value = $values->$variable[0];
+                $variableToGet = $variable[0];
+                $value = $values->$variableToGet;
             }
             elseif(is_array($values))
             {

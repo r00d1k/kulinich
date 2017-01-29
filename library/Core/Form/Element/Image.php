@@ -37,7 +37,7 @@ class Core_Form_Element_Image extends Core_Form_Element_Hidden
         return $this->_endpoint;
     }
 
-    public function render(Zend_View $view = null)
+    public function render(Zend_View_Interface $view = null)
     {
         return parent::render($view) . '
             <script type="text/javascript">

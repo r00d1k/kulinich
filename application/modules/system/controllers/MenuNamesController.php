@@ -16,6 +16,7 @@
                 array(
                      $this->_mapper->map('section'),
                      $this->_mapper->map('key'),
+                     $this->_mapper->map('id'),
                 )
             );
             $base->reset(Zend_Db_Select::COLUMNS);

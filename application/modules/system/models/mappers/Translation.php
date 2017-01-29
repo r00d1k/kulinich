@@ -30,6 +30,7 @@ class System_Model_Mapper_Translation extends Core_Entity_Mapper_Abstract
             array(
                  $this->map('section'),
                  $this->map('key'),
+                 $this->map('id'),
             )
         );
         $base->reset(Zend_Db_Select::COLUMNS);

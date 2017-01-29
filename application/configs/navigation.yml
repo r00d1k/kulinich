@@ -69,7 +69,7 @@ navigation:
                 controller: static-pages
                 action: edit
                 params:
-                    id: 1
+                    id: 4
                     return-to: L3N5c3RlbQ==
                 resource: system::static-pages
                 privilege: index
@@ -91,6 +91,22 @@ navigation:
                 controller: translations
                 action: index
                 resource: system::translations
+                privilege: index
+            systemEmails:
+                label: navigation:system-emails
+                title: navigation:system-emails
+                module: system
+                controller: email-templates
+                action: index
+                resource: system::email-templates
+                privilege: index
+            staticPages:
+                label: navigation:static-pages
+                title: navigation:static-pages
+                module: system
+                controller: static-pages
+                action: index
+                resource: system::static-pages
                 privilege: index
     system:
         label: navigation:system
@@ -115,22 +131,6 @@ navigation:
                 controller: languages
                 action: index
                 resource: system::languages
-                privilege: index
-            systemEmails:
-                label: navigation:system-emails
-                title: navigation:system-emails
-                module: system
-                controller: email-templates
-                action: index
-                resource: system::email-templates
-                privilege: index
-            staticPages:
-                label: navigation:static-pages
-                title: navigation:static-pages
-                module: system
-                controller: static-pages
-                action: index
-                resource: system::static-pages
                 privilege: index
             acl:
                 uri: javascript:void(0)

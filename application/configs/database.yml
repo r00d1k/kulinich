@@ -6,9 +6,9 @@ production:
                 adapter: PDO_MYSQL
                 isDefaultTableAdapter: 1
                 default: 1
-                host: localhost
-                username: demo_kulinich
-                password: HTeD5vQIGH!Yw(
+                host: 127.0.0.1
+                username: root
+                password: root
                 dbname: demo_kulinich
                 charset: UTF8
                 profiler:
@@ -17,9 +17,9 @@ production:
             slave:
                 adapter: PDO_MYSQL
                 defaultMetadataCache: database
-                host: localhost
-                username: demo_kulinich
-                password: q65G0QGVxC
+                host: 127.0.0.1
+                username: root
+                password: root
                 dbname: demo_kulinich
 testing:
     _extends: production
