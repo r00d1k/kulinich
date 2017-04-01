@@ -9,9 +9,6 @@ sudo locale-gen
 sudo apt-get update
 sudo apt-get -y upgrade
 
-echo "[Info] Installing mc"
-sudo apt-get -y install mc
-
 echo "[Info] Installing git"
 sudo apt-get -y install git
 
@@ -20,4 +17,3 @@ sudo apt-get -y install nginx
 
 #sudo docker exec elastic plugin install royrusso/elasticsearch-HQ
 #sudo docker exec elastic plugin install mobz/elasticsearch-head
-

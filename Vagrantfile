@@ -43,6 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision "shell", path: "./provision/install-software.sh"
     config.vm.provision "shell", path: "./provision/tools/install-php5.sh"
+    config.vm.provision "shell", path: "./provision/tools/install-php7.sh"
     config.vm.provision "shell", path: "./provision/tools/install-nodejs.sh"
     config.vm.provision "shell", path: "./provision/reload-configs.sh", run: "always"
 end

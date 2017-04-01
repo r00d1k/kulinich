@@ -12,4 +12,4 @@ cp /vagrant/provision/php-fpm-pool/app.conf /etc/php/7.0/fpm/pool.d/app.conf
 
 
 service php7.0-fpm restart
-service nginx restart
+sudo service nginx restart
