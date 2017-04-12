@@ -50,15 +50,6 @@ class System_Model_Clinic_Photo extends Core_Entity_Model_Abstract
             {
                 $this->image = null;
             }
-
-            if($this->isCover == 'yes')
-            {
-                Zend_Db_Table::getDefaultAdapter()->query('
-                    UPDATE `'.$this->getMapper()->getStorage()->info('name').'`
-                    SET `' . $this->getMapper()->map('isCover') . '` = \'no\'
-                    WHERE `' . $this->getMapper()->map('caseId') . '` = '.$this->caseId.'
-                ')->execute();
-            }
         }
         return parent::save();
     }
