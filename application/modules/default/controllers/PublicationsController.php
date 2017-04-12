@@ -13,7 +13,7 @@ class PublicationsController extends Core_Controller_Action_Abstract
     public function indexAction()
     {
         $this->view->articles = System_Model_Mapper_Publication::getInstance()
-            ->findAll(array('isEnabled' => 'yes'), 'id DESC');
+            ->findAll(array('isEnabled' => 'yes'), 'rank ASC');
     }
 
     public function viewAction()

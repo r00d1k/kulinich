@@ -11,7 +11,7 @@ class Auth_DeniedController extends Core_Controller_Action_Abstract
         if($this->getRequest()->isXmlHttpRequest())
         {
             $this->_setLayout('ajax');
-            $this->renderScript('denied/ajax.phtml');
+            $this->renderScript('denied/index.phtml');
         }
         else
         {

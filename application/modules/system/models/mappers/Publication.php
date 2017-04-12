@@ -11,6 +11,7 @@ class System_Model_Mapper_Publication extends Core_Entity_Mapper_Abstract
 
     protected $_map = array(
         'id'        => 'publication_id',
+        'rank'      => 'publication_rank',
         'title'     => 'publication_title',
         'code'      => 'publication_code',
         'content'   => 'publication_content',

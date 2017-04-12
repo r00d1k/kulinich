@@ -4,7 +4,12 @@ grid:
     type: html
     pagination:
         pageSize: 80
+    rowData:
+        id: id
+    defaultOrdering: rank
     columns:
+        drag:
+            type: drag
         id:
             label: id
             title: id
