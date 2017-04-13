@@ -255,10 +255,11 @@ p{
 .block-img{
 	float:right;
 	border:5px solid #fff;
+	margin: 15px;
 }
 .block-text{
 	width:311px;
-	padding:16px 0 0 19px;
+	margin: 15px;
 }
 .back{
 	color:#261c00;

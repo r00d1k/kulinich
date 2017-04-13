@@ -414,7 +414,7 @@ $(document).ready(function(){
         $('.bottom-slider > li').first().trigger('click');
     }
 
-    if(null == document.getElementById('clinic-case'))
+    if(null != document.getElementById('clinic-case'))
     {
         $('.gallery').bottomSlides();
 
